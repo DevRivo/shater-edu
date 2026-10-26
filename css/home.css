@@ -1,240 +1,164 @@
 ```css
-/* ========================================
-   تنسيقات الصفحة الرئيسية لموقع شاطر
-   لكل سؤال باب
-======================================== */
+/* =========================================
+   شاطر — تصميم الصفحة الرئيسية
+   يعتمد على متغيرات common.css
+========================================= */
 
-/* إعدادات الصفحة */
-body {
-  overflow-x: hidden;
-}
-
-main {
-  min-height: 60vh;
-}
-
-section {
-  scroll-margin-top: 90px;
-}
-
-/* الحاوية العامة */
-.container {
-  width: min(1120px, calc(100% - 32px));
-  margin-inline: auto;
-}
-
-/* ========================================
-   القسم الرئيسي
-======================================== */
+/* القسم الرئيسي والترحيب */
 
 .home-hero {
   position: relative;
   overflow: hidden;
-  padding: 76px 0 84px;
+  padding: 64px 0 76px;
   background:
-    radial-gradient(circle at 12% 20%, rgba(255, 196, 82, 0.16), transparent 28%),
-    radial-gradient(circle at 90% 75%, rgba(66, 86, 235, 0.10), transparent 30%),
-    linear-gradient(135deg, #f8f9ff 0%, #ffffff 55%, #f2f5ff 100%);
-}
-
-.home-hero::before,
-.home-hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.home-hero::before {
-  width: 220px;
-  height: 220px;
-  top: -110px;
-  left: -70px;
-  border: 1px solid rgba(66, 86, 235, 0.12);
-}
-
-.home-hero::after {
-  width: 150px;
-  height: 150px;
-  right: -75px;
-  bottom: -75px;
-  background: rgba(255, 196, 82, 0.12);
+    radial-gradient(
+      circle at 12% 20%,
+      var(--color-primary-light),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-background-soft),
+      var(--color-background)
+    );
 }
 
 .home-hero-inner {
-  position: relative;
-  z-index: 1;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
-  gap: 48px;
+  gap: 44px;
 }
 
 .hero-content {
-  max-width: 620px;
+  max-width: 640px;
 }
 
 .hero-label {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 15px;
-  margin-bottom: 20px;
-  border: 1px solid #e1e5ff;
-  border-radius: 30px;
-  background: #ffffff;
-  color: #3545ba;
-  font-size: 14px;
-  font-weight: 700;
-  box-shadow: 0 5px 18px rgba(29, 24, 134, 0.05);
+  margin-bottom: 18px;
+  padding: 8px 15px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-round);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .hero-content h1 {
-  margin: 0 0 20px;
-  color: #1d1886;
-  font-size: clamp(34px, 5vw, 58px);
+  margin: 0 0 18px;
+  color: var(--color-primary-dark);
+  font-size: clamp(32px, 5vw, 54px);
   font-weight: 800;
-  line-height: 1.4;
-  letter-spacing: -1px;
+  line-height: 1.5;
 }
 
 .hero-highlight {
-  position: relative;
-  display: inline-block;
-  color: #4256eb;
+  color: var(--color-primary);
 }
 
 .hero-content > p {
-  max-width: 570px;
+  max-width: 560px;
   margin: 0;
-  color: #566078;
-  font-size: 17px;
-  line-height: 2;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  line-height: 2.1;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 26px;
 }
 
 .hero-actions .btn {
   min-height: 48px;
-  padding: 13px 23px;
-  font-size: 15px;
-}
-
-.hero-actions .btn-primary {
-  background: linear-gradient(135deg, #4256eb, #2c27d3);
-  color: #ffffff;
-  border: 1px solid transparent;
-  box-shadow: 0 9px 22px rgba(66, 86, 235, 0.19);
-}
-
-.hero-actions .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 13px 26px rgba(66, 86, 235, 0.25);
-}
-
-.hero-actions .btn-outline {
-  background: #ffffff;
-  color: #2c3190;
-  border: 1px solid #dce1f7;
-}
-
-.hero-actions .btn-outline:hover {
-  background: #f0f2ff;
+  padding-inline: 24px;
 }
 
 .hero-visual {
-  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 330px;
+  justify-content: center;
+  min-width: 0;
+  min-height: 300px;
 }
 
-.hero-visual > svg {
+.hero-visual svg,
+.hero-visual img {
   width: min(100%, 340px);
   height: auto;
-  filter: drop-shadow(0 20px 25px rgba(29, 24, 134, 0.08));
 }
 
-/* ========================================
-   عناوين الأقسام
-======================================== */
+.hero-visual img {
+  object-fit: contain;
+}
+
+/* عناوين الأقسام */
 
 .section-heading {
-  max-width: 700px;
-  margin: 0 auto 38px;
+  max-width: 720px;
+  margin: 0 auto 36px;
   text-align: center;
 }
 
 .section-label {
   display: inline-block;
-  margin-bottom: 10px;
-  color: #4256eb;
+  margin-bottom: 8px;
+  color: var(--color-primary);
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 0.3px;
 }
 
 .section-heading h2 {
   margin: 0 0 12px;
-  color: #1d1886;
-  font-size: clamp(25px, 3.5vw, 36px);
+  color: var(--color-primary-dark);
+  font-size: clamp(25px, 4vw, 35px);
   font-weight: 800;
-  line-height: 1.5;
 }
 
 .section-heading p {
   margin: 0;
-  color: #687086;
-  font-size: 15px;
-  line-height: 1.9;
+  color: var(--color-text-secondary);
+  line-height: 2;
 }
 
-/* ========================================
-   قسم التعريف بالموقع
-======================================== */
+/* التعريف بالموقع */
 
 .about-section {
-  padding: 76px 0;
-  background: #ffffff;
+  padding-block: 68px;
+  background: var(--color-background);
 }
 
 .about-panel {
-  position: relative;
-  padding: 34px;
-  border: 1px solid #e8ebfa;
-  border-radius: 24px;
-  background: linear-gradient(135deg, #ffffff, #f8f9ff);
-  box-shadow: 0 12px 35px rgba(29, 24, 134, 0.045);
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  background: var(--color-background-soft);
+  box-shadow: var(--shadow-small);
 }
 
 .about-panel h3 {
-  margin: 0 0 14px;
-  color: #25266f;
+  margin: 0 0 12px;
+  color: var(--color-primary-dark);
   font-size: 23px;
-  line-height: 1.6;
 }
 
 .about-panel p {
   margin: 0;
-  color: #5e657a;
-  font-size: 16px;
+  color: var(--color-text-secondary);
   line-height: 2.1;
 }
 
-/* ========================================
-   قسم المميزات
-======================================== */
+/* المميزات */
 
 .features-section {
-  padding: 76px 0;
-  background: #f8f9ff;
+  padding-block: 68px;
+  background: var(--color-background-soft);
 }
 
 .features-grid {
@@ -244,104 +168,101 @@ section {
 }
 
 .feature-card {
-  position: relative;
-  padding: 27px;
-  border: 1px solid #e8ebf7;
-  border-radius: 20px;
-  background: #ffffff;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  min-width: 0;
+  padding: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-small);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(29, 24, 134, 0.07);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
 }
 
 .feature-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   width: 50px;
   height: 50px;
-  margin-bottom: 18px;
-  border-radius: 15px;
-  background: #eef0ff;
-  color: #3545ba;
+  margin-bottom: 16px;
+  place-items: center;
+  border-radius: var(--radius-medium);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
   font-size: 24px;
 }
 
 .feature-card h3 {
   margin: 0 0 10px;
-  color: #25266f;
+  color: var(--color-primary-dark);
   font-size: 19px;
-  line-height: 1.6;
 }
 
 .feature-card p {
   margin: 0;
-  color: #687086;
+  color: var(--color-text-secondary);
   font-size: 14px;
   line-height: 2;
 }
 
-/* ========================================
-   قسم حدود الموقع
-======================================== */
+/* حدود الموقع */
 
 .limitations-section {
-  padding: 76px 0;
-  background: #ffffff;
+  padding-block: 68px;
+  background: var(--color-background);
 }
 
 .limitations-panel {
   padding: 30px;
-  border: 1px solid #f0dfb2;
-  border-radius: 22px;
-  background: linear-gradient(135deg, #fffdf6, #fff9e9);
+  border: 1px solid #eee2c3;
+  border-radius: var(--radius-large);
+  background: #fffcf4;
 }
 
 .limitations-panel h2 {
   margin: 0 0 14px;
-  color: #735317;
-  font-size: 24px;
-  line-height: 1.6;
+  color: #795b20;
+  font-size: 23px;
 }
 
 .limitations-panel p {
   margin: 0;
-  color: #6e624b;
-  font-size: 15px;
+  color: #76684d;
   line-height: 2;
 }
 
 .limitations-panel ul {
   display: grid;
-  gap: 12px;
-  margin: 20px 0 0;
-  padding-inline-start: 22px;
-  color: #6e624b;
-  line-height: 1.9;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-inline-start: 24px;
+  color: #76684d;
+  line-height: 2;
 }
 
 .limitations-panel li::marker {
-  color: #c18b22;
+  color: #b58b36;
 }
 
-/* ========================================
-   قسم الدعوة للتعرّف على الموقع
-======================================== */
+/* الدعوة إلى التعلّم */
 
 .join-section {
-  padding: 20px 0 80px;
-  background: #ffffff;
+  padding: 20px 0 72px;
+  background: var(--color-background);
 }
 
 .join-panel {
-  position: relative;
-  overflow: hidden;
-  padding: 42px 30px;
-  border-radius: 26px;
-  background: linear-gradient(135deg, #1d1886, #4256eb);
+  padding: 40px 28px;
+  border-radius: var(--radius-large);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark),
+    var(--color-primary)
+  );
   color: #ffffff;
   text-align: center;
 }
@@ -349,112 +270,102 @@ section {
 .join-panel h2 {
   margin: 0 0 12px;
   color: #ffffff;
-  font-size: clamp(24px, 4vw, 34px);
-  line-height: 1.5;
+  font-size: clamp(24px, 4vw, 33px);
 }
 
 .join-panel p {
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 15px;
+  color: #f0edff;
   line-height: 2;
 }
 
 .join-panel .btn {
-  display: inline-flex;
-  margin-top: 23px;
+  margin-top: 22px;
   background: #ffffff;
-  color: #252da4;
-  border: 1px solid #ffffff;
+  color: var(--color-primary-dark);
 }
 
 .join-panel .btn:hover {
-  background: #f0f2ff;
-  transform: translateY(-2px);
+  background: var(--color-primary-light);
 }
 
-/* ========================================
-   تذييل الصفحة
-======================================== */
+/* التذييل */
 
 .site-footer {
-  background: #17164f;
-  color: #ffffff;
+  background: var(--color-background-soft);
 }
 
 .footer-main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 35px;
-  padding: 42px 0 30px;
-}
-
-.site-footer .brand-name,
-.site-footer .brand-tagline {
-  color: #ffffff;
+  gap: 32px;
+  padding-block: 36px 26px;
 }
 
 .footer-navigation h3,
 .footer-developer h3 {
-  margin: 0 0 15px;
-  color: #ffffff;
+  margin: 0 0 14px;
+  color: var(--color-primary-dark);
   font-size: 16px;
 }
 
 .footer-navigation ul {
   display: grid;
-  gap: 10px;
+  justify-items: start;
+  gap: 9px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .footer-navigation a {
-  display: inline-block;
-  color: #d9dcff;
+  color: var(--color-text-secondary);
   font-size: 14px;
-  text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .footer-navigation a:hover {
-  color: #ffd778;
-  transform: translateX(-3px);
+  color: var(--color-primary);
 }
 
 .footer-developer p {
   margin: 0;
-  color: #d9dcff;
+  color: var(--color-text-secondary);
   font-size: 14px;
-  line-height: 1.9;
+  line-height: 2;
 }
 
 .footer-bottom {
-  padding: 18px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.13);
+  padding-block: 16px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 12px;
   text-align: center;
 }
 
 .footer-bottom p {
   margin: 0;
-  color: #d9dcff;
-  font-size: 13px;
-  line-height: 1.8;
 }
 
-/* ========================================
-   تحسينات الموبايل والتابلت
-======================================== */
+/* حالات الظهور عند التمرير */
+
+.feature-card,
+.about-panel,
+.limitations-panel,
+.join-panel {
+  opacity: 1;
+}
+
+/* الأجهزة اللوحية */
 
 @media (max-width: 850px) {
   .home-hero {
-    padding: 55px 0 60px;
+    padding-block: 48px 56px;
   }
 
   .home-hero-inner {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 20px;
     text-align: center;
   }
 
@@ -471,40 +382,34 @@ section {
   }
 
   .hero-visual {
-    min-height: 230px;
+    min-height: 220px;
   }
 
-  .hero-visual > svg {
-    width: min(75%, 270px);
+  .hero-visual svg,
+  .hero-visual img {
+    width: min(75%, 260px);
   }
 
   .about-section,
   .features-section,
   .limitations-section {
-    padding: 55px 0;
-  }
-
-  .join-section {
-    padding-bottom: 60px;
+    padding-block: 50px;
   }
 }
 
+/* الهواتف */
+
 @media (max-width: 560px) {
   .home-hero {
-    padding: 42px 0 48px;
-  }
-
-  .home-hero-inner {
-    gap: 15px;
+    padding-block: 36px 42px;
   }
 
   .hero-content h1 {
-    font-size: 34px;
-    letter-spacing: 0;
+    font-size: 32px;
   }
 
   .hero-content > p {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .hero-actions {
@@ -514,23 +419,19 @@ section {
 
   .hero-actions .btn {
     width: 100%;
-    justify-content: center;
   }
 
   .hero-visual {
-    min-height: 190px;
+    min-height: 180px;
   }
 
-  .hero-visual > svg {
-    width: min(70%, 220px);
+  .hero-visual svg,
+  .hero-visual img {
+    width: min(70%, 210px);
   }
 
   .section-heading {
     margin-bottom: 25px;
-  }
-
-  .section-heading h2 {
-    font-size: 26px;
   }
 
   .features-grid {
@@ -538,42 +439,30 @@ section {
     gap: 14px;
   }
 
-  .feature-card {
-    padding: 22px;
-  }
-
   .about-panel,
   .limitations-panel {
-    padding: 23px 19px;
-    border-radius: 18px;
+    padding: 21px;
   }
 
-  .about-panel h3,
-  .limitations-panel h2 {
-    font-size: 21px;
+  .feature-card {
+    padding: 21px;
   }
 
   .join-panel {
-    padding: 32px 20px;
-    border-radius: 20px;
+    padding: 30px 19px;
   }
 
   .footer-main {
     grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 32px 0 25px;
+    gap: 24px;
   }
 }
 
 /* احترام إعداد تقليل الحركة */
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+  .feature-card {
+    transition: none;
   }
 }
 ```
