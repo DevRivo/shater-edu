@@ -1,154 +1,99 @@
-```javascript
-/* ==========================================
-   شاطر — لكل سؤال باب
-   JavaScript المشترك لجميع الصفحات
-========================================== */
+/* =====================================
+الإعدادات والوظائف المشتركة للموقع
+===================================== */
 
+document.addEventListener("DOMContentLoaded", function () {
 "use strict";
 
-/* 1. وظائف عامة */
-const Shater = {
-  // تحديد عنصر واحد
-  select(selector, parent = document) {
-    return parent.querySelector(selector);
-  },
+// تحديث السنة تلقائيًا في أي عنصر يحمل هذا المعرّف
+const yearElement = document.getElementById("currentYear");
 
-  // تحديد مجموعة عناصر
-  selectAll(selector, parent = document) {
-    return [...parent.querySelectorAll(selector)];
-  },
+if (yearElement) {
+yearElement.textContent = new Date().getFullYear();
+}
 
-  // إظهار رسالة داخل عنصر
-  showMessage(element, message, type = "info") {
-    if (!element) return;
+// تحديد رابط الصفحة الحالية في القائمة
+const currentPage = window.location.pathname.split("/").pop() || "index.html";
+const navigationLinks = document.querySelectorAll(".nav-link");
 
-    element.textContent = message;
-    element.className = `alert alert-${type}`;
-    element.hidden = false;
-    element.setAttribute("role", "status");
-  },
+navigationLinks.forEach(function (link) {
+const linkPage = (link.getAttribute("href") || "").split("/").pop();
 
-  // إخفاء رسالة
-  hideMessage(element) {
-    if (!element) return;
-
-    element.hidden = true;
-    element.textContent = "";
-  },
-
-  // الانتقال إلى عنصر داخل الصفحة
-  scrollTo(selector) {
-    const element = this.select(selector);
-
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-  }
-};
-
-/* 2. تشغيل الوظائف بعد تحميل الصفحة */
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* تحديث السنة تلقائيًا */
-  Shater.selectAll("[data-current-year]").forEach((element) => {
-    element.textContent = new Date().getFullYear();
-  });
-
-  /* تحديد الرابط النشط في قائمة التنقل */
-  const currentPage = (
-    window.location.pathname.split("/").pop() || "index.html"
-  ).toLowerCase();
-
-  Shater.selectAll(".nav-link").forEach((link) => {
-    const href = link.getAttribute("href");
-
-    if (!href) return;
-
-    const linkPage = href.split("/").pop().split("#")[0].toLowerCase();
-
-    if (linkPage && linkPage === currentPage) {
-      link.classList.add("active");
-      link.setAttribute("aria-current", "page");
-    } else {
-      link.classList.remove("active");
-      link.removeAttribute("aria-current");
-    }
-  });
-
-  /* زر فتح وإغلاق قائمة الهاتف */
-  const menuButton = Shater.select("[data-menu-toggle]");
-  const navigation = Shater.select("[data-navigation]");
-
-  if (menuButton && navigation) {
-    menuButton.addEventListener("click", () => {
-      const isOpen = navigation.classList.toggle("is-open");
-
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.setAttribute(
-        "aria-label",
-        isOpen ? "إغلاق القائمة" : "فتح القائمة"
-      );
-    });
-
-    // إغلاق القائمة عند الضغط على أحد الروابط
-    Shater.selectAll("a", navigation).forEach((link) => {
-      link.addEventListener("click", () => {
-        navigation.classList.remove("is-open");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "فتح القائمة");
-      });
-    });
-
-    // إغلاق القائمة عند الضغط خارجها
-    document.addEventListener("click", (event) => {
-      if (
-        !navigation.contains(event.target) &&
-        !menuButton.contains(event.target)
-      ) {
-        navigation.classList.remove("is-open");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "فتح القائمة");
-      }
-    });
-  }
-
-  /* منع إرسال النماذج الفارغة */
-  Shater.selectAll("form[data-check-required]").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      const requiredFields = Shater.selectAll(
-        "[required]",
-        form
-      );
-
-      for (const field of requiredFields) {
-        if (!field.checkValidity()) {
-          event.preventDefault();
-          field.reportValidity();
-          field.focus();
-          return;
-        }
-      }
-    });
-  });
-
-  /* تأكيد العناصر التي تحمل خاصية التأكيد */
-  Shater.selectAll("[data-confirm]").forEach((element) => {
-    element.addEventListener("click", (event) => {
-      const message =
-        element.getAttribute("data-confirm") ||
-        "هل أنت متأكد؟";
-
-      if (!window.confirm(message)) {
-        event.preventDefault();
-      }
-    });
-  });
+```
+if (linkPage === currentPage) {
+  link.classList.add("active");
+  link.setAttribute("aria-current", "page");
+} else {
+  link.classList.remove("active");
+  link.removeAttribute("aria-current");
+}
+```
 
 });
 
-/* إتاحة الوظائف العامة لملفات الصفحات الأخرى */
-window.Shater = Shater;
+// إظهار رسالة للمستخدم عند الحاجة
+window.showMessage = function (message, type) {
+const messageType = type || "info";
+let messageBox = document.getElementById("globalMessage");
+
 ```
+if (!messageBox) {
+  messageBox = document.createElement("div");
+  messageBox.id = "globalMessage";
+  messageBox.className = "message";
+  messageBox.setAttribute("role", "status");
+  messageBox.setAttribute("aria-live", "polite");
+
+  const main = document.querySelector("main");
+
+  if (main) {
+    main.prepend(messageBox);
+  } else {
+    document.body.prepend(messageBox);
+  }
+}
+
+messageBox.className = "message message-" + messageType;
+messageBox.textContent = String(message);
+messageBox.hidden = false;
+```
+
+};
+
+// إخفاء الرسالة العامة
+window.hideMessage = function () {
+const messageBox = document.getElementById("globalMessage");
+
+```
+if (messageBox) {
+  messageBox.hidden = true;
+  messageBox.textContent = "";
+}
+```
+
+};
+
+// منع إرسال النماذج الفارغة التي تستخدم هذا الصنف
+document.querySelectorAll("form[data-check-required]").forEach(function (form) {
+form.addEventListener("submit", function (event) {
+const requiredFields = form.querySelectorAll("[required]");
+let firstInvalidField = null;
+
+```
+  requiredFields.forEach(function (field) {
+    if (!field.checkValidity() && !firstInvalidField) {
+      firstInvalidField = field;
+    }
+  });
+
+  if (firstInvalidField) {
+    event.preventDefault();
+    firstInvalidField.reportValidity();
+  }
+});
+```
+
+});
+
+});
+
