@@ -1,0 +1,579 @@
+```css
+/* ========================================
+   تنسيقات الصفحة الرئيسية لموقع شاطر
+   لكل سؤال باب
+======================================== */
+
+/* إعدادات الصفحة */
+body {
+  overflow-x: hidden;
+}
+
+main {
+  min-height: 60vh;
+}
+
+section {
+  scroll-margin-top: 90px;
+}
+
+/* الحاوية العامة */
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+/* ========================================
+   القسم الرئيسي
+======================================== */
+
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 76px 0 84px;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 196, 82, 0.16), transparent 28%),
+    radial-gradient(circle at 90% 75%, rgba(66, 86, 235, 0.10), transparent 30%),
+    linear-gradient(135deg, #f8f9ff 0%, #ffffff 55%, #f2f5ff 100%);
+}
+
+.home-hero::before,
+.home-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.home-hero::before {
+  width: 220px;
+  height: 220px;
+  top: -110px;
+  left: -70px;
+  border: 1px solid rgba(66, 86, 235, 0.12);
+}
+
+.home-hero::after {
+  width: 150px;
+  height: 150px;
+  right: -75px;
+  bottom: -75px;
+  background: rgba(255, 196, 82, 0.12);
+}
+
+.home-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #e1e5ff;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #3545ba;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 5px 18px rgba(29, 24, 134, 0.05);
+}
+
+.hero-content h1 {
+  margin: 0 0 20px;
+  color: #1d1886;
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+
+.hero-highlight {
+  position: relative;
+  display: inline-block;
+  color: #4256eb;
+}
+
+.hero-content > p {
+  max-width: 570px;
+  margin: 0;
+  color: #566078;
+  font-size: 17px;
+  line-height: 2;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.hero-actions .btn {
+  min-height: 48px;
+  padding: 13px 23px;
+  font-size: 15px;
+}
+
+.hero-actions .btn-primary {
+  background: linear-gradient(135deg, #4256eb, #2c27d3);
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0 9px 22px rgba(66, 86, 235, 0.19);
+}
+
+.hero-actions .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 13px 26px rgba(66, 86, 235, 0.25);
+}
+
+.hero-actions .btn-outline {
+  background: #ffffff;
+  color: #2c3190;
+  border: 1px solid #dce1f7;
+}
+
+.hero-actions .btn-outline:hover {
+  background: #f0f2ff;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 330px;
+}
+
+.hero-visual > svg {
+  width: min(100%, 340px);
+  height: auto;
+  filter: drop-shadow(0 20px 25px rgba(29, 24, 134, 0.08));
+}
+
+/* ========================================
+   عناوين الأقسام
+======================================== */
+
+.section-heading {
+  max-width: 700px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+.section-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #4256eb;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.section-heading h2 {
+  margin: 0 0 12px;
+  color: #1d1886;
+  font-size: clamp(25px, 3.5vw, 36px);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #687086;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ========================================
+   قسم التعريف بالموقع
+======================================== */
+
+.about-section {
+  padding: 76px 0;
+  background: #ffffff;
+}
+
+.about-panel {
+  position: relative;
+  padding: 34px;
+  border: 1px solid #e8ebfa;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff, #f8f9ff);
+  box-shadow: 0 12px 35px rgba(29, 24, 134, 0.045);
+}
+
+.about-panel h3 {
+  margin: 0 0 14px;
+  color: #25266f;
+  font-size: 23px;
+  line-height: 1.6;
+}
+
+.about-panel p {
+  margin: 0;
+  color: #5e657a;
+  font-size: 16px;
+  line-height: 2.1;
+}
+
+/* ========================================
+   قسم المميزات
+======================================== */
+
+.features-section {
+  padding: 76px 0;
+  background: #f8f9ff;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  position: relative;
+  padding: 27px;
+  border: 1px solid #e8ebf7;
+  border-radius: 20px;
+  background: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(29, 24, 134, 0.07);
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 18px;
+  border-radius: 15px;
+  background: #eef0ff;
+  color: #3545ba;
+  font-size: 24px;
+}
+
+.feature-card h3 {
+  margin: 0 0 10px;
+  color: #25266f;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.feature-card p {
+  margin: 0;
+  color: #687086;
+  font-size: 14px;
+  line-height: 2;
+}
+
+/* ========================================
+   قسم حدود الموقع
+======================================== */
+
+.limitations-section {
+  padding: 76px 0;
+  background: #ffffff;
+}
+
+.limitations-panel {
+  padding: 30px;
+  border: 1px solid #f0dfb2;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #fffdf6, #fff9e9);
+}
+
+.limitations-panel h2 {
+  margin: 0 0 14px;
+  color: #735317;
+  font-size: 24px;
+  line-height: 1.6;
+}
+
+.limitations-panel p {
+  margin: 0;
+  color: #6e624b;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.limitations-panel ul {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding-inline-start: 22px;
+  color: #6e624b;
+  line-height: 1.9;
+}
+
+.limitations-panel li::marker {
+  color: #c18b22;
+}
+
+/* ========================================
+   قسم الدعوة للتعرّف على الموقع
+======================================== */
+
+.join-section {
+  padding: 20px 0 80px;
+  background: #ffffff;
+}
+
+.join-panel {
+  position: relative;
+  overflow: hidden;
+  padding: 42px 30px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, #1d1886, #4256eb);
+  color: #ffffff;
+  text-align: center;
+}
+
+.join-panel h2 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.5;
+}
+
+.join-panel p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 15px;
+  line-height: 2;
+}
+
+.join-panel .btn {
+  display: inline-flex;
+  margin-top: 23px;
+  background: #ffffff;
+  color: #252da4;
+  border: 1px solid #ffffff;
+}
+
+.join-panel .btn:hover {
+  background: #f0f2ff;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   تذييل الصفحة
+======================================== */
+
+.site-footer {
+  background: #17164f;
+  color: #ffffff;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  padding: 42px 0 30px;
+}
+
+.site-footer .brand-name,
+.site-footer .brand-tagline {
+  color: #ffffff;
+}
+
+.footer-navigation h3,
+.footer-developer h3 {
+  margin: 0 0 15px;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.footer-navigation ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-navigation a {
+  display: inline-block;
+  color: #d9dcff;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-navigation a:hover {
+  color: #ffd778;
+  transform: translateX(-3px);
+}
+
+.footer-developer p {
+  margin: 0;
+  color: #d9dcff;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.footer-bottom {
+  padding: 18px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #d9dcff;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ========================================
+   تحسينات الموبايل والتابلت
+======================================== */
+
+@media (max-width: 850px) {
+  .home-hero {
+    padding: 55px 0 60px;
+  }
+
+  .home-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .hero-content {
+    margin-inline: auto;
+  }
+
+  .hero-content > p {
+    margin-inline: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 230px;
+  }
+
+  .hero-visual > svg {
+    width: min(75%, 270px);
+  }
+
+  .about-section,
+  .features-section,
+  .limitations-section {
+    padding: 55px 0;
+  }
+
+  .join-section {
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-hero {
+    padding: 42px 0 48px;
+  }
+
+  .home-hero-inner {
+    gap: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 34px;
+    letter-spacing: 0;
+  }
+
+  .hero-content > p {
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 190px;
+  }
+
+  .hero-visual > svg {
+    width: min(70%, 220px);
+  }
+
+  .section-heading {
+    margin-bottom: 25px;
+  }
+
+  .section-heading h2 {
+    font-size: 26px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .feature-card {
+    padding: 22px;
+  }
+
+  .about-panel,
+  .limitations-panel {
+    padding: 23px 19px;
+    border-radius: 18px;
+  }
+
+  .about-panel h3,
+  .limitations-panel h2 {
+    font-size: 21px;
+  }
+
+  .join-panel {
+    padding: 32px 20px;
+    border-radius: 20px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px 0 25px;
+  }
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+```
