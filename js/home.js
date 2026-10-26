@@ -1,122 +1,83 @@
-```javascript
-/* ========================================
-   الصفحة الرئيسية لموقع شاطر
-   لكل سؤال باب
-======================================== */
+/* =====================================
+وظائف الصفحة الرئيسية
+===================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
-  "use strict";
+"use strict";
 
-  // البحث عن عنصر داخل الصفحة
-  const select = (selector) => document.querySelector(selector);
+// التأكد أن الكود يعمل في الصفحة الرئيسية فقط
+const homePage = document.querySelector(".home-hero");
 
-  // ========================================
-  // 1. الانتقال السلس إلى أقسام الصفحة
-  // ========================================
+if (!homePage) {
+return;
+}
 
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      const targetId = link.getAttribute("href");
+// الانتقال إلى قسم التعرّف على المنصة
+const startButton = document.querySelector('[data-action="start-learning"]');
+const learningSection = document.getElementById("about");
 
-      if (!targetId || targetId === "#") {
-        return;
-      }
+if (startButton) {
+startButton.addEventListener("click", function (event) {
+// لا نغيّر السلوك الافتراضي إذا كان الزر رابطًا إلى صفحة أخرى
+const target = startButton.getAttribute("href");
 
-      const target = document.getElementById(targetId.slice(1));
+```
+  if (target && target !== "#about") {
+    return;
+  }
 
-      if (target) {
-        event.preventDefault();
+  event.preventDefault();
 
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    });
-  });
-
-  // ========================================
-  // 2. إظهار تأثير بسيط عند ظهور الأقسام
-  // ========================================
-
-  const animatedElements = document.querySelectorAll(
-    ".feature-card, .about-panel, .limitations-panel, .join-panel"
-  );
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      function (entries, currentObserver) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            currentObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.12
-      }
-    );
-
-    animatedElements.forEach(function (element) {
-      observer.observe(element);
+  if (learningSection) {
+    learningSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
   } else {
-    animatedElements.forEach(function (element) {
-      element.classList.add("is-visible");
-    });
+    window.location.href = "learn.html";
   }
-
-  // ========================================
-  // 3. زر العودة إلى أعلى الصفحة
-  // يعمل إذا كان الزر موجودًا في HTML
-  // ========================================
-
-  const backToTop = select("[data-back-to-top]");
-
-  if (backToTop) {
-    window.addEventListener(
-      "scroll",
-      function () {
-        backToTop.hidden = window.scrollY < 350;
-      },
-      { passive: true }
-    );
-
-    backToTop.addEventListener("click", function () {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
-  }
-
-  // ========================================
-  // 4. تحديث سنة حقوق النشر
-  // ========================================
-
-  document.querySelectorAll("[data-current-year]").forEach(function (element) {
-    element.textContent = new Date().getFullYear();
-  });
-
-  // ========================================
-  // 5. حماية روابط الصفحة الداخلية
-  // لا نمنع الروابط التي لا تملك أقسامًا بعد
-  // ========================================
-
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener("click", function () {
-      const targetId = link.getAttribute("href");
-
-      if (targetId === "#about") {
-        const aboutSection = document.getElementById("about");
-
-        if (aboutSection) {
-          aboutSection.setAttribute("tabindex", "-1");
-        }
-      }
-    });
-  });
-
 });
 ```
+
+}
+
+// جعل البطاقات التي تحتوي على رابط قابلة للاستخدام بلوحة المفاتيح
+const linkedCards = document.querySelectorAll(".feature-card[data-href]");
+
+linkedCards.forEach(function (card) {
+card.setAttribute("tabindex", "0");
+card.setAttribute("role", "link");
+
+```
+function openCard() {
+  const destination = card.getAttribute("data-href");
+
+  if (destination) {
+    window.location.href = destination;
+  }
+}
+
+card.addEventListener("click", function (event) {
+  // عدم التدخل في الروابط والأزرار الموجودة داخل البطاقة
+  if (event.target.closest("a, button")) {
+    return;
+  }
+
+  openCard();
+});
+
+card.addEventListener("keydown", function (event) {
+  if (event.target !== card) {
+    return;
+  }
+
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openCard();
+  }
+});
+```
+
+});
+
+});
